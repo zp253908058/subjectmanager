@@ -28,6 +28,5 @@ public class HomeActivity extends AppCompatActivity {
         //删除
         dao.delete(entity);
         //查询
-        List<SubjectEntity> list = dao.getAll();
     }
 }

@@ -15,10 +15,10 @@ import io.reactivex.Flowable;
 public interface SubjectDao {
 
     @Query("select * from subject")
-    List<SubjectEntity> getAll();
+    Flowable<List<SubjectEntity>> getAll();
 
     @Query("select * from subject where name = :name and teacher_name = :teacherName")
-    SubjectEntity getOne(String name, String teacherName);
+    Flowable<SubjectEntity> getOne(String name, String teacherName);
 
     @Insert
     void add(SubjectEntity... entities);
