@@ -17,8 +17,8 @@ public interface SubjectDao {
     @Query("select * from subject")
     Flowable<List<SubjectEntity>> getAll();
 
-    @Query("select * from subject where name = :name and teacher_name = :teacherName")
-    Flowable<SubjectEntity> getOne(String name, String teacherName);
+    @Query("select * from subject where name = :name")
+    Flowable<SubjectEntity> getOne(String name);
 
     @Insert
     void add(SubjectEntity... entities);
