@@ -25,7 +25,7 @@ public abstract class AppDatabase extends RoomDatabase {
     /**
      * 在Application中做初始化操作
      *
-     * @param application
+     * @param application a
      */
     public static void init(Application application) {
         if (sInstance == null) {
