@@ -1,12 +1,8 @@
 package com.zp.subjectmanager.ui.home;
 
-import androidx.appcompat.app.AppCompatActivity;
-import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.zp.subjectmanager.R;
@@ -14,7 +10,10 @@ import com.zp.subjectmanager.database.AppDatabase;
 import com.zp.subjectmanager.database.dao.SubjectDao;
 import com.zp.subjectmanager.database.table.SubjectEntity;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -59,6 +58,14 @@ public class HomeActivity extends AppCompatActivity {
                         }, throwable -> {
                             //出错的时候的处理
                         }));
+
+
+        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        long current = System.currentTimeMillis();
+        Intent intent = new Intent();
+        intent.setAction("com.subject.action.alarm");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, current + 10000, 60000, pendingIntent);
     }
 
     @Override
